@@ -30,6 +30,7 @@
 
   .part-header.anthropic { background: linear-gradient(135deg, #D97706, #B45309); }
   .part-header.google { background: linear-gradient(135deg, #4285F4, #2B5EA7); }
+  .part-header.apple { background: linear-gradient(135deg, #333333, #1a1a1a); }
 
   .summary-box { background: #E8F5E9; border: 2px solid #4CAF50; border-radius: 12px; padding: 20px; margin: 30px 0; }
   .summary-box h3 { color: #2E7D32; margin-bottom: 10px; font-size: 16px; }
@@ -53,7 +54,7 @@
 <!-- 表紙 -->
 <div class="cover">
   <h1>APIキー 取得・設定ガイド</h1>
-  <div class="subtitle">OpenAI / Anthropic (Claude) / Google のAPIキー取得と開発者への共有方法</div>
+  <div class="subtitle">OpenAI / Anthropic (Claude) / Google / App Store Connect のAPIキー取得と開発者への共有方法</div>
   <div class="info">
     作成日: 2026年5月9日<br>
     じょん総合研究所
@@ -247,6 +248,123 @@
   <div class="step-desc">
     コピーしたAPIキーを開発者にお伝えください。<br>
     共有方法は、チャットのメッセージで直接お送りいただければ大丈夫です。
+  </div>
+</div>
+
+<!-- Part 4: App Store Connect API -->
+<div class="part-header apple">
+  <h2>Part 4: App Store Connect APIキーの発行</h2>
+  <p>iOSアプリの審査提出・管理を開発者に委任する場合に必要です</p>
+</div>
+
+<div class="info-box">
+  <strong>この方法が向いている方:</strong><br>
+  Apple Developerアカウントのログイン情報を開発者に直接渡したくない場合に、APIキーを発行して共有する方法です。<br>
+  手間は少し増えますが、アカウントのセキュリティを保ちながら開発者にアプリの審査提出や管理を委任できます。<br><br>
+  <strong>※</strong> 開発者をApp Store Connectに「ユーザー」として招待する方法もあります（Apple Developer登録ガイドのPart 3を参照）。<br>
+  どちらの方法が良いかは、開発者にご相談ください。
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">App Store Connect にログイン</div>
+  </div>
+  <div class="step-desc">
+    ブラウザで <strong>appstoreconnect.apple.com</strong> にアクセスし、Apple IDでログインします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">「ユーザーとアクセス」を開く</div>
+  </div>
+  <div class="step-desc">
+    トップページのメニューから <strong>「ユーザーとアクセス」</strong> をクリックします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">「統合」タブ → 「App Store Connect API」を選択</div>
+  </div>
+  <div class="step-desc">
+    上部のタブから <strong>「統合」</strong> をクリックし、左側メニューの <strong>「App Store Connect API」</strong> を選択します。<br><br>
+    初回アクセス時は「APIキーへのアクセスをリクエスト」ボタンが表示される場合があります。<br>
+    その場合はボタンをクリックし、利用規約に同意してください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <div class="step-title">APIキーを生成</div>
+  </div>
+  <div class="step-desc">
+    <strong>「+」ボタン（キーを生成）</strong> をクリックします。<br><br>
+    以下を入力・選択してください：
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li><strong>名前</strong>: 任意の名前（例: 「開発者用」など）</li>
+      <li><strong>アクセス</strong>: <strong>「Admin」</strong> を選択</li>
+    </ul>
+    <br>
+    入力後、<strong>「生成」</strong> をクリックします。
+  </div>
+  <div class="step-note">
+    「Admin」権限を選択すると、開発者がアプリの登録・ビルドのアップロード・審査提出など、すべての操作を行えるようになります。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <div class="step-title">APIキーファイル (.p8) をダウンロード</div>
+  </div>
+  <div class="step-desc">
+    キーが生成されると、一覧に新しいキーが表示されます。<br>
+    <strong>「APIキーをダウンロード」</strong> をクリックして、<code>.p8</code> ファイルをダウンロードしてください。
+  </div>
+  <div class="warning-box">
+    <strong>重要:</strong> .p8ファイルは <strong>一度しかダウンロードできません</strong>。<br>
+    必ずダウンロードし、安全な場所に保管してください。紛失した場合は、キーを削除して再発行する必要があります。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">6</div>
+    <div class="step-title">Key ID と Issuer ID を確認</div>
+  </div>
+  <div class="step-desc">
+    同じ画面に以下の2つのIDが表示されています：
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li><strong>Key ID</strong>: キー一覧の各行に表示されています（例: <code>ABC1234DEF</code>）</li>
+      <li><strong>Issuer ID</strong>: ページ上部に表示されています（例: <code>12345678-abcd-efgh-ijkl-123456789012</code>）</li>
+    </ul>
+    <br>
+    これらもコピーしておいてください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">7</div>
+    <div class="step-title">開発者に3点セットを共有</div>
+  </div>
+  <div class="step-desc">
+    以下の <strong>3つ</strong> を開発者にお送りください：
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li><strong>.p8 ファイル</strong>（ダウンロードしたファイル）</li>
+      <li><strong>Key ID</strong></li>
+      <li><strong>Issuer ID</strong></li>
+    </ul>
+    <br>
+    チャットのメッセージで直接お送りいただければ大丈夫です。
+  </div>
+  <div class="step-note">
+    この3つが揃うことで、開発者はお客様のアカウントにログインせずに、アプリの審査提出やビルド管理を行えるようになります。
   </div>
 </div>
 
