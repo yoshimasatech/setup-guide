@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>APIキー取得・設定ガイド</title>
+<style>
+  @page { margin: 20mm 15mm; size: A4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; color: #333; line-height: 1.6; padding: 0; }
+
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 32px; margin-bottom: 16px; color: #10A37F; }
+  .cover .subtitle { font-size: 18px; color: #666; margin-bottom: 40px; }
+  .cover .info { font-size: 14px; color: #999; }
+
+  .section-title { font-size: 24px; font-weight: bold; color: #10A37F; border-bottom: 3px solid #10A37F; padding-bottom: 8px; margin: 40px 0 20px 0; page-break-before: always; }
+  .section-title:first-of-type { page-break-before: avoid; }
+
+  .step { margin: 24px 0; page-break-inside: avoid; }
+  .step-header { display: flex; align-items: center; margin-bottom: 12px; }
+  .step-number { background: #10A37F; color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; }
+  .step-title { font-size: 18px; font-weight: bold; margin-left: 12px; color: #333; }
+  .step-desc { margin-left: 48px; margin-bottom: 12px; font-size: 14px; color: #555; }
+  .step-note { margin-left: 48px; margin-bottom: 12px; font-size: 13px; color: #0D7A5F; background: #E0F2F1; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #10A37F; }
+
+  .part-header { background: linear-gradient(135deg, #10A37F, #0D7A5F); color: white; padding: 20px 24px; border-radius: 12px; margin: 30px 0 20px 0; page-break-before: always; }
+  .part-header:first-of-type { page-break-before: avoid; }
+  .part-header h2 { font-size: 22px; margin-bottom: 4px; }
+  .part-header p { font-size: 14px; opacity: 0.9; }
+
+  .part-header.anthropic { background: linear-gradient(135deg, #D97706, #B45309); }
+  .part-header.google { background: linear-gradient(135deg, #4285F4, #2B5EA7); }
+
+  .summary-box { background: #E8F5E9; border: 2px solid #4CAF50; border-radius: 12px; padding: 20px; margin: 30px 0; }
+  .summary-box h3 { color: #2E7D32; margin-bottom: 10px; font-size: 16px; }
+  .summary-box ul { list-style: none; padding: 0; }
+  .summary-box li { padding: 4px 0; font-size: 14px; }
+  .summary-box li::before { content: "\2713 "; color: #4CAF50; font-weight: bold; }
+
+  .warning-box { background: #FFF8E1; border: 2px solid #FFC107; border-radius: 12px; padding: 16px 20px; margin: 20px 0; font-size: 13px; }
+  .warning-box strong { color: #F57F17; }
+
+  .info-box { background: #F3E5F5; border: 2px solid #9C27B0; border-radius: 12px; padding: 16px 20px; margin: 20px 0; font-size: 13px; }
+  .info-box strong { color: #6A1B9A; }
+
+  .code-box { margin-left: 48px; margin-bottom: 12px; background: #1E1E1E; color: #D4D4D4; padding: 12px 16px; border-radius: 8px; font-family: "SF Mono", "Menlo", monospace; font-size: 13px; overflow-x: auto; }
+
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<div class="cover">
+  <h1>APIキー 取得・設定ガイド</h1>
+  <div class="subtitle">OpenAI / Anthropic (Claude) / Google のAPIキー取得と開発者への共有方法</div>
+  <div class="info">
+    作成日: 2026年5月9日<br>
+    じょん総合研究所
+  </div>
+</div>
+
+<!-- はじめに -->
+<div class="warning-box">
+  <strong>APIキーとは:</strong> AIサービスをアプリに組み込むための「鍵」のようなものです。お客様のアカウントでキーを発行し、開発者にお伝えいただくことで、お客様名義のアカウントでサービスを利用できるようになります。<br><br>
+  <strong>費用について:</strong> APIキーの発行自体は無料です。実際にアプリからAIを呼び出した回数・量に応じて従量課金されます。利用上限の設定も可能です。
+</div>
+
+<!-- Part 1: OpenAI -->
+<div class="part-header">
+  <h2>Part 1: OpenAI（ChatGPT）のAPIキー取得</h2>
+  <p>ChatGPTやGPT-4などのAI機能をアプリに組み込む場合に必要です</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">OpenAI Platform にアクセス</div>
+  </div>
+  <div class="step-desc">
+    ブラウザで <strong>platform.openai.com</strong> にアクセスします。<br>
+    アカウントをお持ちでない場合は <strong>「Sign up」</strong> からアカウントを作成してください。<br>
+    メールアドレスまたはGoogleアカウントで登録できます。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">支払い情報を登録</div>
+  </div>
+  <div class="step-desc">
+    ログイン後、左側メニューの <strong>「Settings」→「Billing」</strong> をクリックします。<br>
+    <strong>「Add payment details」</strong> からクレジットカード情報を登録します。<br><br>
+    初回クレジットの購入画面が表示されるので、<strong>最低金額（$5〜）</strong> でチャージしてください。
+  </div>
+  <div class="step-note">
+    APIの利用料金はチャージ（前払い）方式です。残高がなくなるとAPIが停止するため、意図しない高額請求の心配はありません。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">利用上限を設定（推奨）</div>
+  </div>
+  <div class="step-desc">
+    <strong>「Settings」→「Limits」</strong> から、月間の利用上限を設定できます。<br>
+    <strong>「Set a monthly budget」</strong> に上限金額（例: $10）を入力し、保存してください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <div class="step-title">APIキーを発行</div>
+  </div>
+  <div class="step-desc">
+    左側メニューの <strong>「API keys」</strong> をクリックします。<br>
+    <strong>「Create new secret key」</strong> をクリックし、名前を入力します（例: 「my-app」など、自由に設定できます）。<br><br>
+    <strong>「Create secret key」</strong> をクリックすると、<code>sk-</code> で始まるキーが表示されます。
+  </div>
+  <div class="warning-box">
+    <strong>重要:</strong> 表示されたキーは <strong>この画面でしか確認できません</strong>。必ずコピーして安全な場所に保存してください。<br>
+    画面を閉じると同じキーは二度と表示されません（再発行は可能です）。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <div class="step-title">開発者にキーを共有</div>
+  </div>
+  <div class="step-desc">
+    コピーしたAPIキーを開発者にお伝えください。<br>
+    共有方法は、チャットのメッセージで直接お送りいただければ大丈夫です。
+  </div>
+</div>
+
+<!-- Part 2: Anthropic -->
+<div class="part-header anthropic">
+  <h2>Part 2: Anthropic（Claude）のAPIキー取得</h2>
+  <p>Claude AIの機能をアプリに組み込む場合に必要です</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">Anthropic Console にアクセス</div>
+  </div>
+  <div class="step-desc">
+    ブラウザで <strong>console.anthropic.com</strong> にアクセスします。<br>
+    アカウントをお持ちでない場合は <strong>「Sign up」</strong> からアカウントを作成してください。<br>
+    メールアドレスまたはGoogleアカウントで登録できます。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">支払い情報を登録</div>
+  </div>
+  <div class="step-desc">
+    ログイン後、左側メニューの <strong>「Settings」→「Billing」</strong> をクリックします。<br>
+    <strong>「Add payment method」</strong> からクレジットカード情報を登録します。<br><br>
+    クレジットの購入画面で <strong>最低金額（$5〜）</strong> をチャージしてください。
+  </div>
+  <div class="step-note">
+    OpenAIと同様にチャージ（前払い）方式です。残高がなくなるとAPIが停止します。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">利用上限を設定（推奨）</div>
+  </div>
+  <div class="step-desc">
+    <strong>「Settings」→「Limits」</strong> から、月間の利用上限（Spend limit）を設定できます。<br>
+    上限金額（例: $10）を入力し、保存してください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <div class="step-title">APIキーを発行</div>
+  </div>
+  <div class="step-desc">
+    左側メニューの <strong>「API Keys」</strong> をクリックします。<br>
+    <strong>「Create Key」</strong> をクリックし、名前を入力します（例: 「my-app」など）。<br><br>
+    <strong>「Create Key」</strong> をクリックすると、<code>sk-ant-</code> で始まるキーが表示されます。
+  </div>
+  <div class="warning-box">
+    <strong>重要:</strong> 表示されたキーは <strong>この画面でしか確認できません</strong>。必ずコピーして安全な場所に保存してください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <div class="step-title">開発者にキーを共有</div>
+  </div>
+  <div class="step-desc">
+    コピーしたAPIキーを開発者にお伝えください。<br>
+    共有方法は、チャットのメッセージで直接お送りいただければ大丈夫です。
+  </div>
+</div>
+
+<!-- Part 3: Google -->
+<div class="part-header google">
+  <h2>Part 3: Google（Gemini）のAPIキー取得</h2>
+  <p>Gemini AIの機能をアプリに組み込む場合に必要です</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">Google AI Studio にアクセス</div>
+  </div>
+  <div class="step-desc">
+    ブラウザで <strong>aistudio.google.com</strong> にアクセスし、Googleアカウントでログインします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">APIキーを発行</div>
+  </div>
+  <div class="step-desc">
+    左側メニューの <strong>「Get API key」</strong> をクリックします。<br>
+    <strong>「Create API key」</strong> をクリックし、プロジェクトを選択（または新規作成）します。<br><br>
+    キーが生成されるので、コピーして安全な場所に保存してください。
+  </div>
+  <div class="step-note">
+    Google Gemini APIは無料枠が大きく、小規模な利用であれば無料で利用できる場合があります。<br>
+    有料プランに移行する場合は、Google Cloud Consoleで請求先アカウントの設定が必要です。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">開発者にキーを共有</div>
+  </div>
+  <div class="step-desc">
+    コピーしたAPIキーを開発者にお伝えください。<br>
+    共有方法は、チャットのメッセージで直接お送りいただければ大丈夫です。
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="summary-box">
+  <h3>APIキー取得の流れ（共通）</h3>
+  <ul>
+    <li>各サービスのサイトにアクセスし、アカウントを作成する</li>
+    <li>支払い情報（クレジットカード）を登録する</li>
+    <li>利用上限を設定する（推奨）</li>
+    <li>APIキーを発行し、コピーして開発者に共有する</li>
+  </ul>
+</div>
+
+<div class="warning-box">
+  <strong>セキュリティに関するご注意:</strong><br>
+  ・APIキーは「パスワード」のようなものです。第三者に漏洩しないようご注意ください<br>
+  ・SNSやブログなどに公開しないでください<br>
+  ・万が一漏洩した場合は、各サービスの管理画面からキーを無効化（削除）し、新しいキーを再発行してください
+</div>
+
+<div class="info-box">
+  <strong>どのAPIキーが必要かは開発者からご案内します。</strong><br>
+  すべてのキーが必要とは限りません。開発するアプリの要件に応じて、必要なサービスのキーのみ取得していただきます。
+</div>
+
+<div class="warning-box">
+  <strong>ご不明な点がございましたら、お気軽にご連絡ください。</strong><br>
+  画面共有でのサポートも可能です。
+</div>
+
+<div class="footer">
+  APIキー 取得・設定ガイド | じょん総合研究所
+</div>
+
+</body>
+</html>

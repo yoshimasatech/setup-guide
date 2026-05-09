@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Apple Developer Program 登録ガイド</title>
+<style>
+  @page { margin: 20mm 15mm; size: A4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; color: #333; line-height: 1.6; padding: 0; }
+
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 32px; margin-bottom: 16px; color: #007AFF; }
+  .cover .subtitle { font-size: 18px; color: #666; margin-bottom: 40px; }
+  .cover .info { font-size: 14px; color: #999; }
+
+  .section-title { font-size: 24px; font-weight: bold; color: #007AFF; border-bottom: 3px solid #007AFF; padding-bottom: 8px; margin: 40px 0 20px 0; page-break-before: always; }
+  .section-title:first-of-type { page-break-before: avoid; }
+
+  .step { margin: 24px 0; page-break-inside: avoid; }
+  .step-header { display: flex; align-items: center; margin-bottom: 12px; }
+  .step-number { background: #007AFF; color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; }
+  .step-title { font-size: 18px; font-weight: bold; margin-left: 12px; color: #333; }
+  .step-desc { margin-left: 48px; margin-bottom: 12px; font-size: 14px; color: #555; }
+  .step-note { margin-left: 48px; margin-bottom: 12px; font-size: 13px; color: #1565C0; background: #E3F2FD; padding: 10px 14px; border-radius: 8px; border-left: 4px solid #007AFF; }
+
+  .part-header { background: linear-gradient(135deg, #007AFF, #0051D5); color: white; padding: 20px 24px; border-radius: 12px; margin: 30px 0 20px 0; page-break-before: always; }
+  .part-header h2 { font-size: 22px; margin-bottom: 4px; }
+  .part-header p { font-size: 14px; opacity: 0.9; }
+
+  .summary-box { background: #E8F5E9; border: 2px solid #4CAF50; border-radius: 12px; padding: 20px; margin: 30px 0; }
+  .summary-box h3 { color: #2E7D32; margin-bottom: 10px; font-size: 16px; }
+  .summary-box ul { list-style: none; padding: 0; }
+  .summary-box li { padding: 4px 0; font-size: 14px; }
+  .summary-box li::before { content: "\2713 "; color: #4CAF50; font-weight: bold; }
+
+  .warning-box { background: #FFF8E1; border: 2px solid #FFC107; border-radius: 12px; padding: 16px 20px; margin: 20px 0; font-size: 13px; }
+  .warning-box strong { color: #F57F17; }
+
+  .info-box { background: #F3E5F5; border: 2px solid #9C27B0; border-radius: 12px; padding: 16px 20px; margin: 20px 0; font-size: 13px; }
+  .info-box strong { color: #6A1B9A; }
+
+  .footer { text-align: center; color: #999; font-size: 11px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; }
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<div class="cover">
+  <h1>Apple Developer Program<br>登録ガイド</h1>
+  <div class="subtitle">Apple ID作成 → Developer Program登録 → 開発者への招待</div>
+  <div class="info">
+    作成日: 2026年5月9日<br>
+    じょん総合研究所
+  </div>
+</div>
+
+<!-- Part 1 -->
+<div class="part-header">
+  <h2>Part 1: 事前準備</h2>
+  <p>登録に必要なもの・環境を確認します</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">必要なものを確認</div>
+  </div>
+  <div class="step-desc">
+    以下のものをご用意ください。
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li><strong>iPhone または iPad</strong>（Touch ID / Face ID / パスコードが有効なもの）</li>
+      <li><strong>本人確認書類</strong>（パスポートまたは運転免許証）</li>
+      <li><strong>クレジットカードまたはデビットカード</strong>（年会費の支払い用）</li>
+      <li><strong>Apple ID</strong>（お持ちでない場合は次のステップで作成します）</li>
+    </ul>
+  </div>
+  <div class="step-note">
+    登録手続きはiPhone/iPadの「Apple Developer」アプリから行います。<br>
+    PCからは登録できませんのでご注意ください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">Apple ID の2ファクタ認証を有効にする</div>
+  </div>
+  <div class="step-desc">
+    Apple Developer Programへの登録には、<strong>2ファクタ認証が有効なApple ID</strong> が必要です。<br><br>
+    確認方法: <strong>設定 → [自分の名前] → サインインとセキュリティ → 2ファクタ認証</strong><br>
+    「オン」になっていればOKです。オフの場合は画面の指示に従って有効にしてください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">Apple ID の名前を本名（法的氏名）にする</div>
+  </div>
+  <div class="step-desc">
+    Apple IDに登録されている <strong>姓・名</strong> は、App Storeで「販売者名」として公開されます。<br>
+    必ず <strong>本名（法的氏名）</strong> になっていることを確認してください。<br><br>
+    確認方法: <strong>設定 → [自分の名前] → 名前、電話番号、メール</strong>
+  </div>
+  <div class="warning-box">
+    <strong>注意:</strong> ニックネームや会社名をApple IDの名前に設定していると、登録審査が遅れる場合があります。
+  </div>
+</div>
+
+<!-- Part 2 -->
+<div class="part-header">
+  <h2>Part 2: Apple Developer アプリからの登録</h2>
+  <p>iPhone/iPadを使ってApple Developer Programに登録します</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">「Apple Developer」アプリをインストール</div>
+  </div>
+  <div class="step-desc">
+    App Storeで <strong>「Apple Developer」</strong> と検索し、Appleの公式アプリをインストールします。<br>
+    アプリを開き、Apple IDでサインインします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">「今すぐ登録」をタップ</div>
+  </div>
+  <div class="step-desc">
+    アプリの「アカウント」タブを開き、<strong>「Apple Developer Programに登録」</strong> をタップします。<br>
+    続いて <strong>「今すぐ登録」</strong> をタップして登録手続きを開始します。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">登録タイプを選択</div>
+  </div>
+  <div class="step-desc">
+    登録タイプの選択画面が表示されます。<br>
+    <strong>「個人 / 個人事業主」</strong> を選択してください。
+  </div>
+  <div class="step-note">
+    法人（会社）として登録する場合は「組織」を選択しますが、D-U-N-S番号が必要になります。<br>
+    個人アプリの場合は「個人」で問題ありません。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <div class="step-title">本人確認</div>
+  </div>
+  <div class="step-desc">
+    画面の指示に従い、本人確認を行います。<br>
+    <strong>パスポートまたは運転免許証</strong> をカメラで撮影し、顔認証（セルフィー）を行います。
+  </div>
+  <div class="step-note">
+    本人確認はAppleによる自動処理で行われます。書類がはっきり読み取れるよう、明るい場所で撮影してください。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">5</div>
+    <div class="step-title">連絡先情報の入力</div>
+  </div>
+  <div class="step-desc">
+    以下の情報を入力します。
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li>メールアドレス（連絡用）</li>
+      <li>電話番号</li>
+      <li>住所</li>
+    </ul>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">6</div>
+    <div class="step-title">ライセンス契約に同意</div>
+  </div>
+  <div class="step-desc">
+    Apple Developer Program ライセンス契約の内容を確認し、<strong>「同意する」</strong> をタップします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">7</div>
+    <div class="step-title">年会費の支払い</div>
+  </div>
+  <div class="step-desc">
+    年会費 <strong>12,980円（税込）</strong> の支払いを行います。<br>
+    Apple IDに登録されている支払い方法（クレジットカード等）で決済されます。<br><br>
+    <strong>「購読」</strong> をタップして支払いを完了します。
+  </div>
+  <div class="warning-box">
+    <strong>年会費について:</strong> Apple Developer Programは年間サブスクリプションです。<br>
+    1年後に自動更新されます（不要な場合は更新前にキャンセル可能）。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">8</div>
+    <div class="step-title">審査完了を待つ</div>
+  </div>
+  <div class="step-desc">
+    支払い完了後、Appleによる審査が行われます。<br>
+    通常 <strong>24時間〜数日</strong> で審査が完了し、登録メールアドレスに通知が届きます。<br><br>
+    審査完了後、Apple Developerアプリまたは <strong>developer.apple.com</strong> にログインすると、メンバーシップが有効になっています。
+  </div>
+  <div class="step-note">
+    審査に時間がかかる場合（1週間以上）は、Appleサポートに問い合わせることも可能です。
+  </div>
+</div>
+
+<!-- Part 3 -->
+<div class="part-header">
+  <h2>Part 3: 開発者を招待する</h2>
+  <p>App Store Connectで開発者にアクセス権限を付与します</p>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">1</div>
+    <div class="step-title">App Store Connect にログイン</div>
+  </div>
+  <div class="step-desc">
+    PCまたはスマートフォンのブラウザで <strong>appstoreconnect.apple.com</strong> にアクセスし、Apple IDでログインします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">2</div>
+    <div class="step-title">「ユーザーとアクセス」を開く</div>
+  </div>
+  <div class="step-desc">
+    トップページのメニューから <strong>「ユーザーとアクセス」</strong> をクリックします。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">3</div>
+    <div class="step-title">新しいユーザーを追加</div>
+  </div>
+  <div class="step-desc">
+    <strong>「+」ボタン</strong> をクリックし、以下の情報を入力します。
+    <ul style="margin-top: 8px; margin-left: 16px;">
+      <li><strong>姓名</strong>: 開発者の名前</li>
+      <li><strong>メールアドレス</strong>: 開発者のApple ID（メールアドレス）</li>
+      <li><strong>役割</strong>: <strong>「Admin」</strong>を選択</li>
+    </ul>
+  </div>
+  <div class="step-note">
+    開発者のメールアドレスは別途お伝えします。<br>
+    「Admin」権限を付与すると、アプリの登録・審査提出・証明書管理などすべての操作が可能になります。
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-header">
+    <div class="step-number">4</div>
+    <div class="step-title">招待を送信</div>
+  </div>
+  <div class="step-desc">
+    入力内容を確認し、<strong>「招待」</strong> をクリックします。<br>
+    開発者のメールアドレスに招待メールが届き、承認すると参加が完了します。
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3>全ての設定が完了しました</h3>
+  <ul>
+    <li>Apple Developer Programに登録されました</li>
+    <li>開発者がAdmin権限で招待されました</li>
+    <li>この後の技術的な設定（証明書・プロファイル作成、アプリ登録など）は開発者が行います</li>
+  </ul>
+</div>
+
+<div class="info-box">
+  <strong>費用まとめ:</strong><br>
+  ・Apple Developer Program 年会費: 12,980円（税込）/ 年<br>
+  ・それ以外の費用は発生しません
+</div>
+
+<div class="warning-box">
+  <strong>ご不明な点がございましたら、お気軽にご連絡ください。</strong><br>
+  画面共有でのサポートも可能です。
+</div>
+
+<div class="footer">
+  Apple Developer Program 登録ガイド | じょん総合研究所
+</div>
+
+</body>
+</html>
